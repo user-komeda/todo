@@ -19,12 +19,12 @@ var app = express(); // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'public/stylesheets/'),
+  src: path.join(__dirname, 'scss/page'),
   dest: path.join(__dirname, 'public/stylesheets/dist'),
   indentedSyntax: false,
   // true = .sass and false = .scss
   sourceMap: false,
-  prefix: '/dist',
+  //prefix: 'dist',
   debug: true
 }));
 console.log(path.join(__dirname, 'public'));
