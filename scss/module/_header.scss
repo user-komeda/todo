@@ -1,0 +1,33 @@
+.header {
+  background-color: #15274d;
+  color: #ffffff;
+  padding: 10px 20px;
+  height: 50px;
+}
+.ul_element {
+  display: inline-block;
+  list-style: none;
+}
+.ul_element a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.header h1 {
+  float: left;
+  line-height: 0.5;
+}
+.header div {
+  margin-left: auto;
+  width: 260px;
+}
+.header div p {
+  display: inline-block;
+}
+.header div p:first-child {
+  margin-right: 10px;
+}
+.clear::after {
+  content: '';
+  display: block;
+  clear: both;
+}
