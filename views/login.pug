@@ -6,20 +6,20 @@ block content
     div
       ul.ul_element
         li
-          a(href="/SIGNUP") 新規登録
+          a(href="/signup") 新規登録
       ul.ul_element
         li
           a(href="/login") Login
   div(class="form_div")
-    h2 新規登録
-    form(class="form" action="/signup" method="post")
+    h2 Login
+    form(class="form" action="/login" method="post")
     p メールアドレス
     input(class="input" type="email" name="mail")
-    p 名前
-    input(class="input" type="text" name="username")
     p パスワード
     input(class="input" type="password" name="password")
-    p パスワード確認用
-    input(class="input" type="password" name="")
     br
     button(class="button" type="submit") 送信
+  p.forgetpass
+    a(href="#") パスワードを忘れた方
+  p.notsignup
+    a(href="/signup") 会員登録をしてない方はこちら

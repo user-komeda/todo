@@ -1,6 +1,6 @@
 .form_div {
   width: 320px;
-  margin: 100px auto;
+  margin: 100px auto 10px;
   padding: 5px 20px;
   background-color: white;
 }
@@ -13,7 +13,14 @@
   margin-bottom: 10px;
   font-size: 20px;
 }
-
+.forgetpass,
+.notsignup {
+  a {
+    margin: 0 auto;
+    display: block;
+    width: 350px;
+  }
+}
 .button {
   font-size: 20px;
   margin-left: 260px;
