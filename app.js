@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const sassMiddleware = require('node-sass-middleware')
 const signupRouter = require('./routes/signup')
+const loginRouter = require('./routes/login')
 const app = express()
 
 // view engine setup
@@ -13,19 +14,20 @@ app.set('view engine', 'pug')
 app.use(
   sassMiddleware({
     src: path.join(__dirname, 'scss/page'),
-    dest: path.join(__dirname, 'public/stylesheets/dist'),
+    dest: path.join(__dirname, 'public/stylesheets/dist/'),
     indentedSyntax: false, // true = .sass and false = .scss
     sourceMap: false,
-    // prefix: 'dist',
+    debug: true,
+    force: true,
   })
 )
-console.log(path.join(__dirname, 'public'))
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/signup', signupRouter)
+app.use('/login', loginRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
