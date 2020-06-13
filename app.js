@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/signup', signupRouter)
 app.use('/login', loginRouter)
 app.use('/forgat-pass', forgatPassRouter)
-app.use('/reset_pass', resetPassRouter)
+app.use('/reset-pass', resetPassRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
