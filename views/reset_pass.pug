@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  header.header
+    h1(class="float_left clear") todo-app
+    div
+      ul.ul_element
+        li
+          a(href="/SIGNUP") 新規登録
+      ul.ul_element
+        li
+          a(href="/login") Login
+  div(class="form_div")
+    h2 パスワード再発行
+    form(class="form" action="/signup" method="post")
+    p メールアドレス
+    input(class="input" type="email" name="mail")
+    p 新しいパスワード
+    input(class="input" type="password" name="password")
+    p 新しいパスワード確認用
+    input(class="input" type="password" name="")
+    br
+    button(class="button" type="submit") 送信

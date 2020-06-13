@@ -7,6 +7,7 @@ const sassMiddleware = require('node-sass-middleware')
 const signupRouter = require('./routes/signup')
 const loginRouter = require('./routes/login')
 const forgatPassRouter = require('./routes/forgat_pass.js')
+const resetPassRouter = require('./routes/reset_pass')
 const app = express()
 
 // view engine setup
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/signup', signupRouter)
 app.use('/login', loginRouter)
 app.use('/forgat-pass', forgatPassRouter)
+app.use('/reset_pass', resetPassRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
