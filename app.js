@@ -6,6 +6,7 @@ const logger = require('morgan')
 const sassMiddleware = require('node-sass-middleware')
 const signupRouter = require('./routes/signup')
 const loginRouter = require('./routes/login')
+const forgatPassRouter = require('./routes/forgat_pass.js')
 const app = express()
 
 // view engine setup
@@ -28,6 +29,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/signup', signupRouter)
 app.use('/login', loginRouter)
+app.use('/forgat-pass', forgatPassRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
