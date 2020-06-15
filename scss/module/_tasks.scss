@@ -1,0 +1,64 @@
+.folder {
+  width: 25%;
+  float: left;
+  background-color: white;
+  ul {
+    padding: 0;
+  }
+  li {
+    margin-top: 10px;
+  }
+}
+.tasks {
+  width: 75%;
+  background-color: white;
+  margin-left: 27%;
+  .border {
+    margin-top: 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    tbody {
+      td:first-child {
+        width: 60%;
+      }
+      td:last-child {
+        width: 15%;
+      }
+    }
+    tr {
+      border: 1px solid #b6bcc6;
+    }
+    th {
+      text-align: left;
+    }
+  }
+}
+.task_folder {
+  margin: 0 auto;
+  width: 90%;
+  margin-top: 30px;
+  h2 {
+    background-color: #e5e9ec;
+    margin: 0;
+  }
+  a {
+    color: black;
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    &:hover,
+    &:active {
+      background-color: aqua;
+    }
+  }
+  .border {
+    border: 1px solid #b6bcc6;
+    text-decoration: none;
+  }
+  ul {
+    list-style: none;
+  }
+}
