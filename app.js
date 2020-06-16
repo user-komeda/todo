@@ -8,6 +8,7 @@ const loginRouter = require('./routes/login')
 const forgatPassRouter = require('./routes/forgat_pass.js')
 const resetPassRouter = require('./routes/reset_pass')
 const tasksRouter = require('./routes/tasks')
+const createFolderRouter = require('./routes/create_folder')
 const app = express()
 
 // view engine setup
@@ -22,7 +23,8 @@ app.use('/signup', signupRouter)
 app.use('/login', loginRouter)
 app.use('/forgat-pass', forgatPassRouter)
 app.use('/reset-pass', resetPassRouter)
-app.use('/folder/:id/tasks', tasksRouter)
+app.use('/folders/:id/tasks', tasksRouter)
+app.use('/folders/create', createFolderRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
