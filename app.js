@@ -10,6 +10,7 @@ const resetPassRouter = require('./routes/reset_pass')
 const tasksRouter = require('./routes/tasks')
 const createFolderRouter = require('./routes/create_folder')
 const createTaskRouter = require('./routes/create_task')
+const editTaskRouter = require('./routes/edit_task')
 const app = express()
 
 // view engine setup
@@ -27,6 +28,7 @@ app.use('/reset-pass', resetPassRouter)
 app.use('/folders/:id/tasks', tasksRouter)
 app.use('/folders/create', createFolderRouter)
 app.use('/folders/:id/create/tasks', createTaskRouter)
+app.use('/folders/:id/tasks/:taskid/edit', editTaskRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

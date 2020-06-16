@@ -11,10 +11,15 @@ block content
         li
           a(href="/login") Login
   div(class="form_div")
-    h2 タスクを追加する
+    h2 タスクを編集する
     form(class="form" action="" method="post")
     p タイトル
     input(class="input" type="text" name="folder_name")
+    p 状態
+    select(name="status")
+      option(value="着手") 着手
+      option(value="未着手") 未着手
+      option(value="完了") 完了
     p 期限
     input(type="date" name="date_limit")
     button(class="button" type="submit") 送信
