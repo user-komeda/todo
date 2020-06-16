@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  header.header
+    h1(class="float_left clear") todo-app
+    div
+      ul.ul_element
+        li
+          a(href="/signup") 新規登録
+      ul.ul_element
+        li
+          a(href="/login") Login
+  div(class="form_div")
+    h2 フォルダを追加する
+    form(class="form" action="" method="post")
+    p フォルダ名
+    input(class="input" type="text" name="folder_name")
