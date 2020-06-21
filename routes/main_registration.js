@@ -8,7 +8,6 @@ const APP_KEY = 'secretKey'
 /* GET home page. */
 router.get('/', (req, res, next) => {
   const id = req.params.id
-  // res.redirect('/folders/1/tasks')
   Users.findOne({ _id: id }, (err, result) => {
     if (err) {
       throw err
@@ -16,9 +15,9 @@ router.get('/', (req, res, next) => {
     if (!result) {
       res.status(422).send('このurlは正しくありません')
     } else if (result.get('emailVerifiedAt')) {
-      // req.login(result, () => {
-      res.redirect('/folders/1/tasks')
-      // })
+      req.login(result, () => {
+        res.redirect('/folders/1/tasks')
+      })
     } else {
       console.log('sucsess')
       const nowDate = new Date()
@@ -42,7 +41,8 @@ router.get('/', (req, res, next) => {
       if (!isCorrectHash || !isExpired || !isCorrectSignature) {
         res.status(422).send('urlが正しくありません')
       } else {
-        result.update(
+        console.log('sucsess')
+        Users.updateOne(
           { emailVerifiedAt: null },
           { $set: { emailVerifiedAt: new Date() } },
           (err) => {
@@ -51,9 +51,9 @@ router.get('/', (req, res, next) => {
             }
           }
         )
-        // req.login(result, () => {
-        res.redirect('/folders/1/tasks')
-        // })
+        req.login(result, () => {
+          res.redirect('/folders/1/tasks')
+        })
       }
     }
   })
