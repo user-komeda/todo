@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
     } else if (result.get('emailVerifiedAt')) {
       const id = result.get('_id')
       req.login(result, () => {
-        res.redirect(`/folders/${id}/tasks`)
+        return res.redirect(`/folders/${id}/tasks`)
       })
     } else {
       const nowDate = new Date()
@@ -47,7 +47,7 @@ router.get('/', (req, res, next) => {
         )
         const id = result.get('_id')
         req.login(result, () => {
-          res.redirect(`/folders/${id}/tasks`)
+          return res.redirect(`/folders/${id}/tasks`)
         })
       }
     }
