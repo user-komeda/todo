@@ -19,7 +19,6 @@ router.post('/', varidationRules, (req, res, next) => {
   const username = req.body.username
   const hashedPassword = bcrypt.hashSync(req.body.password, 10)
   const email = req.body.mail
-  console.log(email)
   const date = new Date()
   const newUser = new Users({
     username: username,

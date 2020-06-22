@@ -24,6 +24,9 @@ router.post('/', (req, res, next) => {
     },
     { $unwind: '$profile' },
   ]).exec((err, data) => {
+    if (err) {
+      throw err
+    }
     if (data[0] && data[0].token === token && data[0].email === email) {
       Users.updateOne(
         { email: email },

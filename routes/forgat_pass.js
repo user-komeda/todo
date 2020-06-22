@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const MailConfig = require('../mailConfig')
-const Folder = require('../schema/folder')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
