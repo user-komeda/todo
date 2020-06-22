@@ -4,6 +4,9 @@ const Folder = require('../schema/folder')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
+  if (!req.session.user) {
+    return res.redirect('/login')
+  }
   Folder.find({}, (err, result) => {
     if (err) {
       throw err
@@ -12,6 +15,8 @@ router.get('/', (req, res, next) => {
       res.render('tasks_view', {
         folders: result,
       })
+    } else {
+      return res.render('tasks_view')
     }
   })
 })

@@ -37,7 +37,7 @@ router.post('/', (req, res, next) => {
           }
           if (result) {
             PasswordReset.deleteMany()
-            res.redirect('/login')
+            return res.redirect('/login')
           }
         }
       )

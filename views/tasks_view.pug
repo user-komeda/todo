@@ -13,12 +13,17 @@ block content
   div.task_folder
     div.folder.clear
       h2 フォルダ
-      ul
-        li
-          a(class="border" href="/folders/create") フォルダを追加する
-        each folder in folders
+      if folders
+        ul
           li
-            a(class="border" href='/folders/'+folder.id+'/tasks') #{folder.folderName}
+            a(class="border" href="/folders/create") フォルダを追加する
+          each folder in folders
+            li
+              a(class="border" href='/folders/'+folder.id+'/tasks') #{folder.folderName}
+      else
+        ul
+          li
+            a(class="border" href="/folders/create") フォルダを追加する
     div.tasks
       h2 タスク
       a(href="/folders/:id/create/tasks" class="border") タスクを追加する
