@@ -16,14 +16,9 @@ block content
       ul
         li
           a(class="border" href="/folders/create") フォルダを追加する
-        li
-          a(href="#") test
-        li
-          a(href="#") test
-        li
-          a(href="#") test
-        li
-          a(href="#") test
+        each folder in folders
+          li
+            a(class="border" href='/folders/'+folder.id+'/tasks') #{folder.folderName}
     div.tasks
       h2 タスク
       a(href="/folders/:id/create/tasks" class="border") タスクを追加する

@@ -14,7 +14,8 @@ router.post('/', passport.authenticate('local'), (req, res, next) => {
       return res.redirect('/login')
     } else {
       req.session.user = { username: user.username }
-      return res.redirect('/folders/1/tasks')
+      const id = user.get('_id')
+      return res.redirect(`/folders/${id}/tasks`)
     }
   })
 })
