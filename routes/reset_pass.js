@@ -3,7 +3,6 @@ const router = express.Router({ mergeParams: true })
 const PasswordReset = require('../schema/password_reset')
 const bcrypt = require('bcrypt')
 const Users = require('../schema/users')
-const { db } = require('../schema/password_reset')
 /* GET home page. */
 router.get('/', (req, res, next) => {
   console.log(req.params.token)
