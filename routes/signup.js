@@ -56,7 +56,7 @@ router.post('/', varidationRules, (req, res, next) => {
               throw err
             }
             const id = result.get('_id')
-            mailConfig(id, email, req, res)
+            mailConfig.signupMail(id, email, req, res)
           })
           // return res.redirect('/folders/1/tasks')
         }

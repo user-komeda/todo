@@ -42,13 +42,15 @@ app.use(passport.session())
 app.use('/signup', signupRouter)
 app.use('/login', loginRouter)
 app.use('/forgat-pass', forgatPassRouter)
-app.use('/reset-pass', resetPassRouter)
+app.use('/reset-pass/:token', resetPassRouter)
 app.use('/folders/:id/tasks', tasksRouter)
 app.use('/folders/create', createFolderRouter)
 app.use('/folders/:id/create/tasks', createTaskRouter)
 app.use('/folders/:id/tasks/:taskid/edit', editTaskRouter)
 app.use('/verify/:id/:hash', mainRegistration)
 
+mongoose.set('useNewUrlParser', true)
+mongoose.set('useUnifiedTopology', true)
 mongoose.connect('mongodb://localhost:27017/todo', (err) => {
   if (err) {
     console.error(err)
