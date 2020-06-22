@@ -29,12 +29,9 @@ router.post('/', varidationRules, (req, res, next) => {
   })
   Users.find({ email: email }, (err, result) => {
     if (err) {
-      console.log('1')
       throw err
     }
-    console.log(result)
     if (result.length > 0) {
-      console.log('2')
       return res.status(422).json({
         errors: [
           {
@@ -48,7 +45,6 @@ router.post('/', varidationRules, (req, res, next) => {
     } else {
       newUser.save((err) => {
         if (err) {
-          console.log('3')
           throw err
         } else {
           Users.findOne({ email: email }, (err, result) => {

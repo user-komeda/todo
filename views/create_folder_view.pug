@@ -12,7 +12,7 @@ block content
           a(href="/login") Login
   div(class="form_div")
     h2 フォルダを追加する
-    form(class="form" action="" method="post")
-    p フォルダ名
-    input(class="input" type="text" name="folder_name")
-    button(class="button" type="submit") 送信
+    form(class="form" action="/folders/create" method="post")
+      p フォルダ名
+      input(class="input" type="text" name="folder_name")
+      button(class="button" type="submit") 送信
