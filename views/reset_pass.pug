@@ -12,12 +12,14 @@ block content
           a(href="/login") Login
   div(class="form_div")
     h2 パスワード再発行
-    form(class="form" action="/signup" method="post")
-    p メールアドレス
-    input(class="input" type="email" name="mail")
-    p 新しいパスワード
-    input(class="input" type="password" name="password")
-    p 新しいパスワード確認用
-    input(class="input" type="password" name="")
-    br
-    button(class="button" type="submit") 送信
+    h3
+    form(class="form" action='/reset-pass/:token' method="post")
+      p メールアドレス
+      input(class="input" type="email" name="mail")
+      p 新しいパスワード
+      input(class="input" type="password" name="password")
+      p 新しいパスワード確認用
+      input(class="input" type="password" name="")
+      input(type="hidden" value=token name="token")
+      br
+      button(class="button" type="submit") 送信
