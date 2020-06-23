@@ -53,7 +53,7 @@ app.use('/verify/:id/:hash', mainRegistration)
 
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useUnifiedTopology', true)
-mongoose.connect('mongodb://localhost:27017/todo', (err) => {
+mongoose.connect('mongodb://heroku_7tb00thv:moom4gb9g25ob91p5gttc4pd01@ds149218.mlab.com:49218/heroku_7tb00thv', (err) => {
   if (err) {
     console.error(err)
   } else {
