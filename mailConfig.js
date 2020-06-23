@@ -33,11 +33,11 @@ const signupMail = (id, email, req, res) => {
       if (error) {
         throw error
       }
-      return res.json({
-        message: 'メールを送信しました。確認してください。',
-      })
     }
   )
+  return res.json({
+    message: 'メールを送信しました。確認してください。',
+  })
 }
 const resetPassMails = (email, res, req) => {
   const randomStr = Math.random().toFixed(36).substring(2, 38)
@@ -75,10 +75,10 @@ const resetPassMails = (email, res, req) => {
       if (error) {
         throw error
       }
-      return res.json({
-        message: 'メールを送信しました。確認してください。',
-      })
     }
   )
+  return res.json({
+    message: 'メールを送信しました。確認してください。',
+  })
 }
 module.exports = { signupMail, resetPassMails }
