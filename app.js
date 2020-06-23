@@ -16,6 +16,12 @@ const createFolderRouter = require('./routes/create_folder')
 const createTaskRouter = require('./routes/create_task')
 const editTaskRouter = require('./routes/edit_task')
 const mainRegistration = require('./routes/main_registration')
+const MongoDBStore = require('connect-mongodb-session')(session)
+const store = new MongoDBStore({
+  uri:
+    'mongodb://heroku_7tb00thv:moom4gb9g25ob91p5gttc4pd01@ds149218.mlab.com:49218/heroku_7tb00thv',
+  collection: 'mySessions',
+})
 const app = express()
 
 // view engine setup
@@ -31,7 +37,7 @@ app.use(
     secret: 'secret',
     resave: false,
     saveUninitialized: false,
-    store: new RedisStore(),
+    store: store,
     cookie: {
       httpOnly: true,
       secure: false,
@@ -54,13 +60,16 @@ app.use('/verify/:id/:hash', mainRegistration)
 
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useUnifiedTopology', true)
-mongoose.connect('mongodb://heroku_7tb00thv:moom4gb9g25ob91p5gttc4pd01@ds149218.mlab.com:49218/heroku_7tb00thv', (err) => {
-  if (err) {
-    console.error(err)
-  } else {
-    console.log('success')
+mongoose.connect(
+  'mongodb://heroku_7tb00thv:moom4gb9g25ob91p5gttc4pd01@ds149218.mlab.com:49218/heroku_7tb00thv',
+  (err) => {
+    if (err) {
+      console.error(err)
+    } else {
+      console.log('success')
+    }
   }
-})
+)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
