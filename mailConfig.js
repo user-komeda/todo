@@ -3,7 +3,8 @@ const nodemailer = require('nodemailer')
 const PasswordReset = require('./schema/password_reset')
 const appKey = 'secretKey'
 const APP_URL = 'https://komedatodoapp.herokuapp.com'
-const sendgrid = require('sendgrid')(
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(
   'SG.rJS4dnpOTkOF901dC_UJGg.MgSq4q-glAFMe4l0u2X1Gi9VuTO0CFmC5R11RFste94'
 )
 
@@ -18,17 +19,28 @@ const signupMail = (id, email, req, res) => {
     .update(verificationUrl)
     .digest('hex')
   verificationUrl += '&signature=' + signature
-  const signupEmail = new sendgrid.Email()
-  signupEmail.addTo(email)
-  signupEmail.setFrom('shigoto922@gmail.com')
-  signupEmail.setSubject('本登録メール')
-  signupEmail.setHtml(
-    '以下のurlをクリックして本登録を完了させてください。\n\n' + verificationUrl
+  const msg = {
+    to: email,
+    from: 'shigoto922@gmail.com', // Use the email address or domain you verified above
+    subject: '本登録メール',
+    text:
+      '以下のurlをクリックして本登録を完了させてください。\n\n' +
+      verificationUrl,
+  }
+  sgMail.send(msg).then(
+    () => {},
+    (error) => {
+      console.error(error)
+
+      if (error.response) {
+        console.error(error.response.body)
+      } else {
+        return res.json({
+          message: 'メールを送信しました。確認してください。',
+        })
+      }
+    }
   )
-  sendgrid.send(signupEmail)
-  return res.json({
-    result: true,
-  })
 }
 const resetPassMails = (email, res, req) => {
   const randomStr = Math.random().toFixed(36).substring(2, 38)
@@ -52,18 +64,27 @@ const resetPassMails = (email, res, req) => {
       }
     }
   )
-  // req.session.user = { token: token }
-  const resetPassEmail = new sendgrid.Email()
-  resetPassEmail.addTo(email)
-  resetPassEmail.setFrom('shigoto922@gmail.com')
-  resetPassEmail.setSubject('パスワード再発行メール')
-  resetPassEmail.setHtml(
-    '以下のurlをクリックしてパスワードを再発行してください。\n\n' +
-      passwordResetUrl
+  const msg = {
+    to: email,
+    from: 'shigoto922@gmail.com', // Use the email address or domain you verified above
+    subject: 'パスワードを再発行メール',
+    text:
+      '以下のurlをクリックしてパスワードを再発行してください。\n\n' +
+      passwordResetUrl,
+  }
+  sgMail.send(msg).then(
+    () => {},
+    (error) => {
+      console.error(error)
+
+      if (error.response) {
+        console.error(error.response.body)
+      } else {
+        return res.json({
+          message: 'メールを送信しました。確認してください。',
+        })
+      }
+    }
   )
-  sendgrid.send(resetPassEmail)
-  return res.json({
-    result: true,
-  })
 }
 module.exports = { signupMail, resetPassMails }
