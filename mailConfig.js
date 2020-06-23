@@ -2,7 +2,11 @@ const crypto = require('crypto')
 const nodemailer = require('nodemailer')
 const PasswordReset = require('./schema/password_reset')
 const appKey = 'secretKey'
-const APP_URL = 'http://localhost:3000'
+const APP_URL = 'https://komedatodoapp.herokuapp.com'
+const sendgrid = require('sendgrid')(
+  'SG.rJS4dnpOTkOF901dC_UJGg.MgSq4q-glAFMe4l0u2X1Gi9VuTO0CFmC5R11RFste94'
+)
+
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
@@ -27,16 +31,14 @@ const signupMail = (id, email, req, res) => {
     .update(verificationUrl)
     .digest('hex')
   verificationUrl += '&signature=' + signature
-
-  // 本登録メールを送信
-  transporter.sendMail({
-    from: 'shigoto922@gmail.com',
-    to: email,
-    text:
-      '以下のURLをクリックして本登録を完了させてください。\n\n' +
-      verificationUrl,
-    subject: '本登録メール',
-  })
+  const email = new sendgrid.Email()
+  email.addTo(email)
+  email.setFrom('shigoto922@gmail.com')
+  email.setSubject('本登録メール')
+  email.setHtml(
+    '以下のurlをクリックして本登録を完了させてください。\n\n' + verificationUrl
+  )
+  sendgrid.send(email)
   return res.json({
     result: true,
   })
@@ -64,14 +66,15 @@ const resetPassMails = (email, res, req) => {
     }
   )
   // req.session.user = { token: token }
-  transporter.sendMail({
-    from: 'Shigoto922@gmail.com',
-    to: email,
-    text:
-      '以下のURLをクリックしてパスワードを再発行してください。\n\n' +
-      passwordResetUrl,
-    subject: 'パスワード再発行メール',
-  })
+  const email = new sendgrid.Email()
+  email.addTo(email)
+  email.setFrom('shigoto922@gmail.com')
+  email.setSubject('パスワード再発行メール')
+  email.setHtml(
+    '以下のurlをクリックしてパスワードを再発行してください。\n\n' +
+      passwordResetUrl
+  )
+  sendgrid.send(email)
   return res.json({
     result: true,
   })
