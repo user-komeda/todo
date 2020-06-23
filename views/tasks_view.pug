@@ -26,7 +26,10 @@ block content
             a(class="border" href="/folders/create") フォルダを追加する
     div.tasks
       h2 タスク
-      a(href="/folders/:id/create/tasks" class="border") タスクを追加する
+      if folders
+        a(href='/folders/'+id+'/create/tasks' class="border") タスクを追加する
+      else
+        a(href="/folders/create" class="border") フォルダを作成する
       table
         thead
           tr
@@ -35,27 +38,15 @@ block content
             th 期限
             th
         tbody
-          tr
-            td テスト
-            td テスト
-            td テスト
-            td
-              a(href="/folders/1/tasks/1/edit") 編集
-          tr
-            td テスト
-            td テスト
-            td テスト
-            td
-              a(href="#") 編集
-          tr
-            td テスト
-            td テスト
-            td テスト
-            td
-              a(href="#") 編集
-          tr
-            td テスト
-            td テスト
-            td テスト
-            td
-              a(href="#") 編集
+          each key in keys
+            tr
+              td #{tasks[key].profile.title}
+              if tasks[key].profile.status===0
+                td 未着手
+              if tasks[key].profile.status===1
+                td 着手
+              if tasks[key].profile.status===2
+                td 完了
+              td #{tasks[key].profile.due_date}
+              td
+                a(href="") 編集
