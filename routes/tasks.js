@@ -1,23 +1,53 @@
 const express = require('express')
-const router = express.Router()
+const router = express.Router({ mergeParams: true })
 const Folder = require('../schema/folder')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
+  const id = req.params.id
   if (!req.session.user) {
     return res.redirect('/login')
   }
-  Folder.find({}, (err, result) => {
+
+  Folder.aggregate([
+    {
+      $lookup: {
+        from: 'tasks',
+        localField: '_id',
+        foreignField: 'folderId',
+        as: 'profile',
+      },
+    },
+    { $unwind: '$profile' },
+  ]).exec((err, dates) => {
     if (err) {
       throw err
     }
-    if (result.length > 0) {
-      res.render('tasks_view', {
-        folders: result,
-      })
-    } else {
-      return res.render('tasks_view')
-    }
+    Folder.find({}, (err, results) => {
+      let index = 0
+      const key = []
+      for (const result of dates) {
+        if (result._id.toString() === id.toString()) {
+          key.push(index)
+        }
+        index++
+      }
+      if (err) {
+        throw err
+      }
+      if (dates) {
+        return res.render('tasks_view', {
+          folders: results,
+          tasks: dates,
+          keys: key,
+          id: id,
+        })
+      } else {
+        return res.render('tasks_view', {
+          id: id,
+        })
+      }
+    })
   })
 })
 
