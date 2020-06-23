@@ -31,6 +31,7 @@ app.use(
     secret: 'secret',
     resave: false,
     saveUninitialized: false,
+    store: new RedisStore(),
     cookie: {
       httpOnly: true,
       secure: false,
