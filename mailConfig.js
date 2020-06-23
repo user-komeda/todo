@@ -30,15 +30,12 @@ const signupMail = (id, email, req, res) => {
   sgMail.send(msg).then(
     () => {},
     (error) => {
-      console.error(error)
-
-      if (error.response) {
-        console.error(error.response.body)
-      } else {
-        return res.json({
-          message: 'メールを送信しました。確認してください。',
-        })
+      if (error) {
+        throw error
       }
+      return res.json({
+        message: 'メールを送信しました。確認してください。',
+      })
     }
   )
 }
@@ -75,15 +72,12 @@ const resetPassMails = (email, res, req) => {
   sgMail.send(msg).then(
     () => {},
     (error) => {
-      console.error(error)
-
-      if (error.response) {
-        console.error(error.response.body)
-      } else {
-        return res.json({
-          message: 'メールを送信しました。確認してください。',
-        })
+      if (error) {
+        throw error
       }
+      return res.json({
+        message: 'メールを送信しました。確認してください。',
+      })
     }
   )
 }
