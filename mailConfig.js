@@ -7,19 +7,6 @@ const sendgrid = require('sendgrid')(
   'SG.rJS4dnpOTkOF901dC_UJGg.MgSq4q-glAFMe4l0u2X1Gi9VuTO0CFmC5R11RFste94'
 )
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  requireTLS: false,
-  tls: {
-    rejectUnauthorized: false,
-  },
-  auth: {
-    user: 'shinnnosukek@gmail.com',
-    pass: 'anikosama9219',
-  },
-})
 const signupMail = (id, email, req, res) => {
   const hash = crypto.createHash('sha1').update(email).digest('hex')
   const now = new Date()
@@ -31,14 +18,14 @@ const signupMail = (id, email, req, res) => {
     .update(verificationUrl)
     .digest('hex')
   verificationUrl += '&signature=' + signature
-  const email = new sendgrid.Email()
-  email.addTo(email)
-  email.setFrom('shigoto922@gmail.com')
-  email.setSubject('本登録メール')
-  email.setHtml(
+  const signupEmail = new sendgrid.Email()
+  signupEmail.addTo(email)
+  signupEmail.setFrom('shigoto922@gmail.com')
+  signupEmail.setSubject('本登録メール')
+  signupEmail.setHtml(
     '以下のurlをクリックして本登録を完了させてください。\n\n' + verificationUrl
   )
-  sendgrid.send(email)
+  sendgrid.send(signupEmail)
   return res.json({
     result: true,
   })
@@ -66,15 +53,15 @@ const resetPassMails = (email, res, req) => {
     }
   )
   // req.session.user = { token: token }
-  const email = new sendgrid.Email()
-  email.addTo(email)
-  email.setFrom('shigoto922@gmail.com')
-  email.setSubject('パスワード再発行メール')
-  email.setHtml(
+  const resetPassEmail = new sendgrid.Email()
+  resetPassEmail.addTo(email)
+  resetPassEmail.setFrom('shigoto922@gmail.com')
+  resetPassEmail.setSubject('パスワード再発行メール')
+  resetPassEmail.setHtml(
     '以下のurlをクリックしてパスワードを再発行してください。\n\n' +
       passwordResetUrl
   )
-  sendgrid.send(email)
+  sendgrid.send(resetPassEmail)
   return res.json({
     result: true,
   })
