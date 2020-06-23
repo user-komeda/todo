@@ -14,9 +14,9 @@ block content
     h2 Login
     form(class="form" action="/login" method="post")
       p メールアドレス
-      input(class="input" type="email" name="mail")
+      input(class="input" type="email" name="mail" required)
       p パスワード
-      input(class="input" type="password" name="password")
+      input(class="input" type="password" name="password" required)
       br
       button(class="button" type="submit") 送信
     p.forgetpass

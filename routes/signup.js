@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router()
 const Users = require('../schema/users')
 const bcrypt = require('bcrypt')
-const varidationRules = require('../varidate_rule')
+const validationRules = require('../varidate_rule')
 const { validationResult } = require('express-validator')
 const mailConfig = require('../mailConfig')
 /* GET home page. */
@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
   res.render('signup', { title: 'Express' })
 })
 
-router.post('/', varidationRules, (req, res, next) => {
+router.post('/', validationRules.validateSigunupFormRules, (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() })

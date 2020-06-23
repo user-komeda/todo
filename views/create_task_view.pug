@@ -14,8 +14,8 @@ block content
     h2 タスクを追加する
     form(class="form" action="/folders/"+id+"/create/tasks" method="post")
       p タイトル
-      input(class="input" type="text" name="task_name")
+      input(class="input" type="text" name="task_name" required)
       p 期限
-      input(type="date" name="date_limit")
+      input(type="date" name="date_limit" required)
       input(type="hidden" name="folder_id",value=folderId)
       button(class="button" type="submit") 送信

@@ -14,12 +14,12 @@ block content
     h2 タスクを編集する
     form(class="form" action=`/folders/${folderId}/tasks/${taskId}/edit` method="post")
       p タイトル
-      input(class="input" type="text" name="task_name" placeholder=`${taskTitle}`)
+      input(class="input" type="text" name="task_name" placeholder=`${taskTitle}` required)
       p 状態
       select(name="status")
         option(value="着手") 着手
         option(value="未着手") 未着手
         option(value="完了") 完了
       p 期限
-      input(type="date" name="date_limit" placeholder=`${taskLimit}`)
+      input(type="date" name="date_limit" placeholder=`${taskLimit}` required)
       button(class="button" type="submit") 送信
