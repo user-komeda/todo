@@ -31,7 +31,7 @@ const signupMail = (id, email, req, res) => {
   // 本登録メールを送信
   transporter.sendMail({
     from: 'shigoto922@gmail.com',
-    to: 'email',
+    to: email,
     text:
       '以下のURLをクリックして本登録を完了させてください。\n\n' +
       verificationUrl,
@@ -65,7 +65,7 @@ const resetPassMails = (email, res, req) => {
   )
   // req.session.user = { token: token }
   transporter.sendMail({
-    from: 'shinnnosukek@gmail.com',
+    from: 'Shigoto922@gmail.com',
     to: email,
     text:
       '以下のURLをクリックしてパスワードを再発行してください。\n\n' +
