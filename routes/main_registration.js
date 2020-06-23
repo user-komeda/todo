@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router({ mergeParams: true })
 const Users = require('../schema/users')
 const crypto = require('crypto')
-const APP_URL = 'http://localhost:3000'
+const APP_URL = 'https://komedatodoapp.herokuapp.com'
 const APP_KEY = 'secretKey'
 
 /* GET home page. */

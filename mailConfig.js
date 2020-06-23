@@ -2,20 +2,12 @@ const crypto = require('crypto')
 const nodemailer = require('nodemailer')
 const PasswordReset = require('./schema/password_reset')
 const appKey = 'secretKey'
-const APP_URL = 'http://localhost:3000'
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  requireTLS: false,
-  tls: {
-    rejectUnauthorized: false,
-  },
-  auth: {
-    user: 'shinnnosukek@gmail.com',
-    pass: 'anikosama9219',
-  },
-})
+const APP_URL = 'https://komedatodoapp.herokuapp.com'
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(
+  'SG.rJS4dnpOTkOF901dC_UJGg.MgSq4q-glAFMe4l0u2X1Gi9VuTO0CFmC5R11RFste94'
+)
+
 const signupMail = (id, email, req, res) => {
   const hash = crypto.createHash('sha1').update(email).digest('hex')
   const now = new Date()
@@ -27,18 +19,24 @@ const signupMail = (id, email, req, res) => {
     .update(verificationUrl)
     .digest('hex')
   verificationUrl += '&signature=' + signature
-
-  // 本登録メールを送信
-  transporter.sendMail({
-    from: 'shinnnosukek@gmail.com',
-    to: 'shigoto922@gmail.com',
-    text:
-      '以下のURLをクリックして本登録を完了させてください。\n\n' +
-      verificationUrl,
+  const msg = {
+    to: email,
+    from: 'shigoto922@gmail.com', // Use the email address or domain you verified above
     subject: '本登録メール',
-  })
+    text:
+      '以下のurlをクリックして本登録を完了させてください。\n\n' +
+      verificationUrl,
+  }
+  sgMail.send(msg).then(
+    () => {},
+    (error) => {
+      if (error) {
+        throw error
+      }
+    }
+  )
   return res.json({
-    result: true,
+    message: 'メールを送信しました。確認してください。',
   })
 }
 const resetPassMails = (email, res, req) => {
@@ -63,17 +61,24 @@ const resetPassMails = (email, res, req) => {
       }
     }
   )
-  // req.session.user = { token: token }
-  transporter.sendMail({
-    from: 'shinnnosukek@gmail.com',
+  const msg = {
     to: email,
+    from: 'shigoto922@gmail.com', // Use the email address or domain you verified above
+    subject: 'パスワードを再発行メール',
     text:
-      '以下のURLをクリックしてパスワードを再発行してください。\n\n' +
+      '以下のurlをクリックしてパスワードを再発行してください。\n\n' +
       passwordResetUrl,
-    subject: 'パスワード再発行メール',
-  })
+  }
+  sgMail.send(msg).then(
+    () => {},
+    (error) => {
+      if (error) {
+        throw error
+      }
+    }
+  )
   return res.json({
-    result: true,
+    message: 'メールを送信しました。確認してください。',
   })
 }
 module.exports = { signupMail, resetPassMails }
