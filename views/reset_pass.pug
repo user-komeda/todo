@@ -13,13 +13,13 @@ block content
   div(class="form_div")
     h2 パスワード再発行
     h3
-    form(class="form" action='/reset-pass/:token' method="post")
+    form(class="form" id="js_reset_pass_form" action='/reset-pass/:token' method="post")
       p メールアドレス
-      input(class="input" type="email" name="mail")
+      input(class="input" type="email" name="mail" required)
       p 新しいパスワード
-      input(class="input" type="password" name="password")
+      input(class="input" type="password" name="password" required)
       p 新しいパスワード確認用
-      input(class="input" type="password" name="")
+      input(class="input" type="password" name="passwordConfirmation" required)
       input(type="hidden" value=token name="token")
       br
       button(class="button" type="submit") 送信

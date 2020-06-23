@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const passport = require('../auth')
 const Users = require('../schema/users')
-// const flash = require('connect-flash')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
