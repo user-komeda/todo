@@ -30,8 +30,8 @@ const signupMail = (id, email, req, res) => {
 
   // 本登録メールを送信
   transporter.sendMail({
-    from: 'shinnnosukek@gmail.com',
-    to: 'shigoto922@gmail.com',
+    from: 'shigoto922@gmail.com',
+    to: 'email',
     text:
       '以下のURLをクリックして本登録を完了させてください。\n\n' +
       verificationUrl,
