@@ -63,7 +63,7 @@ app.use('/verify/:id/:hash', mainRegistration)
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useUnifiedTopology', true)
 mongoose.connect(
-  'mongodb://heroku_7tb00thv:moom4gb9g25ob91p5gttc4pd01@ds149218.mlab.com:49218/heroku_7tb00thv',
+  'mongodb+srv://heroku_7tb00thv:komedatodoapp@cluster-7tb00thv.tymab.mongodb.net/heroku_7tb00thv?retryWrites=true&w=majority',
   (err) => {
     if (err) {
       console.error(err)
