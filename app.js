@@ -21,7 +21,7 @@ const mainRegistration = require('./routes/main_registration')
 const MongoDBStore = require('connect-mongodb-session')(session)
 const store = new MongoDBStore({
   uri:
-    'mongodb://heroku_7tb00thv:moom4gb9g25ob91p5gttc4pd01@ds149218.mlab.com:49218/heroku_7tb00thv',
+    'mongodb+srv://heroku_7tb00thv:komedatodoapp@cluster-7tb00thv.tymab.mongodb.net/heroku_7tb00thv?retryWrites=true&w=majority',
   collection: 'mySessions',
 })
 const app = express()
@@ -66,6 +66,7 @@ mongoose.connect(
   'mongodb+srv://heroku_7tb00thv:komedatodoapp@cluster-7tb00thv.tymab.mongodb.net/heroku_7tb00thv?retryWrites=true&w=majority',
   (err) => {
     if (err) {
+      console.log(faired)
       console.error(err)
     } else {
       console.log('success')
