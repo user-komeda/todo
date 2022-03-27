@@ -66,7 +66,7 @@ app.use("/reset-pass/:token", resetPassRouter);
 app.use("/folders/:id/tasks", tasksRouter);
 app.use("/folders/create", createFolderRouter);
 app.use("/folders/:id/create/tasks", createTaskRouter);
-app.use("/folders/:id/tasks/:taskid/edit", editTaskRouter);
+app.use("/folders/:id/tasks/:taskId/edit", editTaskRouter);
 app.use("/verify/:id/:hash", mainRegistration);
 
 // mongodb接続

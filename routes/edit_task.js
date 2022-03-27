@@ -7,7 +7,7 @@ import { validationResult } from "express-validator";
 
 // タスク編集ページ
 router.get("/", (req, res, next) => {
-  const taskId = req.params.taskid;
+  const taskId = req.params.taskId;
   const folderId = req.params.id;
   Task.findOne({ _id: taskId }, (err, result) => {
     if (err) {
@@ -31,7 +31,7 @@ router.post("/", validateEditTaskFormRules, (req, res, next) => {
   const taskName = req.body.task_name;
   let status = req.body.status;
   const limitTask = req.body.date_limit;
-  const taskId = req.params.taskid;
+  const taskId = req.params.taskId;
   const folderId = req.params.id;
   switch (status) {
     case "未着手":
