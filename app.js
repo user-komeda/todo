@@ -69,6 +69,7 @@ app.use("/verify/:id/:hash", mainRegistration);
 mongoose.connect("mongodb://127.0.0.1:27017/myDB", (err) => {
   if (err) {
     console.error(err);
+    console.error(err);
   } else {
     console.log("success");
   }

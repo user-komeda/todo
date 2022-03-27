@@ -63,6 +63,9 @@
     "*.{js,jsx,ts,tsx}": [
       "yarn format --write",
       "yarn lint"
+    ],
+    "*.{css,less,sass,scss}": [
+      "yarn style-lint"
     ]
   }
 }
