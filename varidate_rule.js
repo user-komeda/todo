@@ -1,74 +1,66 @@
-const { check } = require('express-validator')
+import { check } from "express-validator";
 
-const validateSigunupFormRules = [
-  check('username').not().isEmpty().withMessage('この項目は入力必須です'),
-  check('password')
+export const validateSigunupFormRules = [
+  check("username").not().isEmpty().withMessage("この項目は入力必須です"),
+  check("password")
     .not()
     .isEmpty()
-    .withMessage('この項目は入力必須です')
+    .withMessage("この項目は入力必須です")
     .isLength({ min: 8, max: 25 })
-    .withMessage('8文字から25文字で入力してください')
+    .withMessage("8文字から25文字で入力してください")
     .matches(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,25}$/)
-    .withMessage('パスワードには小文字大文字数字を含めてください')
+    .withMessage("パスワードには小文字大文字数字を含めてください")
     .custom((value, { req }) => {
       if (req.body.password !== req.body.passwordConfirmation) {
-        throw new Error('パスワード（確認）と一致しません。')
+        throw new Error("パスワード（確認）と一致しません。");
       }
-      return true
+      return true;
     }),
-  check('mail')
+  check("mail")
     .not()
     .isEmpty()
-    .withMessage('この項目は入力必須です')
+    .withMessage("この項目は入力必須です")
     .isEmail()
-    .withMessage('有効なメールアドレス形式で入力して下さい'),
-]
-const validateResetPassFormRules = [
-  check('password')
+    .withMessage("有効なメールアドレス形式で入力して下さい"),
+];
+export const validateResetPassFormRules = [
+  check("password")
     .not()
     .isEmpty()
-    .withMessage('この項目は入力必須です')
+    .withMessage("この項目は入力必須です")
     .isLength({ min: 8, max: 25 })
-    .withMessage('8文字から25文字で入力してください')
+    .withMessage("8文字から25文字で入力してください")
     .matches(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,25}$/)
-    .withMessage('パスワードには小文字大文字数字を含めてください')
+    .withMessage("パスワードには小文字大文字数字を含めてください")
     .custom((value, { req }) => {
       if (req.body.password !== req.body.passwordConfirmation) {
-        throw new Error('パスワード（確認）と一致しません。')
+        throw new Error("パスワード（確認）と一致しません。");
       }
-      return true
+      return true;
     }),
-  check('mail')
+  check("mail")
     .not()
     .isEmpty()
-    .withMessage('この項目は入力必須です')
+    .withMessage("この項目は入力必須です")
     .isEmail()
-    .withMessage('有効なメールアドレス形式で入力して下さい'),
-]
-const validateForgatPassFormRules = [
-  check('mail')
+    .withMessage("有効なメールアドレス形式で入力して下さい"),
+];
+export const validateForgatPassFormRules = [
+  check("mail")
     .not()
     .isEmpty()
-    .withMessage('この項目は入力必須です')
+    .withMessage("この項目は入力必須です")
     .isEmail()
-    .withMessage('有効なメールアドレス形式で入力して下さい'),
-]
-const validateEditTaskFormRules = [
-  check('task_name').not().isEmpty().withMessage('この項目は入力必須です'),
-  check('date_limit').not().isEmpty().withMessage('この項目は入力必須です'),
-]
-const validateCreateTaskFormRules = [
-  check('task_name').not().isEmpty().withMessage('この項目は入力必須です'),
-  check('date_limit').not().isEmpty().withMessage('この項目は入力必須です'),
-]
-const validateCreateFolderFormRules = [
-  check('folder_name').not().isEmpty().withMessage('この項目は入力必須です'),
-]
-module.exports = {
-  validateSigunupFormRules,
-  validateResetPassFormRules,
-  validateForgatPassFormRules,
-  validateEditTaskFormRules,
-  validateCreateTaskFormRules,
-  validateCreateFolderFormRules,
-}
+    .withMessage("有効なメールアドレス形式で入力して下さい"),
+];
+export const validateEditTaskFormRules = [
+  check("task_name").not().isEmpty().withMessage("この項目は入力必須です"),
+  check("date_limit").not().isEmpty().withMessage("この項目は入力必須です"),
+];
+export const validateCreateTaskFormRules = [
+  check("task_name").not().isEmpty().withMessage("この項目は入力必須です"),
+  check("date_limit").not().isEmpty().withMessage("この項目は入力必須です"),
+];
+export const validateCreateFolderFormRules = [
+  check("folder_name").not().isEmpty().withMessage("この項目は入力必須です"),
+];
