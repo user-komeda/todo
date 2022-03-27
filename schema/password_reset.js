@@ -1,5 +1,8 @@
 /* eslint-disable new-cap */
 import mongoose from "mongoose";
+/**
+ * PasswordReset schema
+ */
 const PasswordReset = mongoose.Schema({
   email: "string",
   token: "string",

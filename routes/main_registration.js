@@ -6,7 +6,7 @@ import { createHash, createHmac } from "crypto";
 const APP_URL = "https://komedatodoapp.herokuapp.com";
 const APP_KEY = "secretKey";
 
-/* GET home page. */
+// 認証ページ
 router.get("/", (req, res, next) => {
   const id = req.params.id;
   Users.findOne({ _id: id }, (err, result) => {

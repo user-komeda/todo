@@ -5,7 +5,7 @@ import Task from "../schema/tasks.js";
 import { validateEditTaskFormRules } from "../varidate_rule.js";
 import { validationResult } from "express-validator";
 
-/* GET home page. */
+// タスク編集ページ
 router.get("/", (req, res, next) => {
   const taskId = req.params.taskid;
   const folderId = req.params.id;
@@ -21,6 +21,8 @@ router.get("/", (req, res, next) => {
     });
   });
 });
+
+// タスク編集リクエスト
 router.post("/", validateEditTaskFormRules, (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

@@ -3,6 +3,7 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import users from "./schema/users.js";
 
+// 認証設定
 passport.use(
   new LocalStrategy(
     {

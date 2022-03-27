@@ -8,6 +8,7 @@ sendgrid.setApiKey(
   "SG.rJS4dnpOTkOF901dC_UJGg.MgSq4q-glAFMe4l0u2X1Gi9VuTO0CFmC5R11RFste94"
 );
 
+// メール送信設定
 const signupMail = (id, email, req, res) => {
   const hash = createHash("sha1").update(email).digest("hex");
   const now = new Date();
@@ -38,6 +39,8 @@ const signupMail = (id, email, req, res) => {
     message: "メールを送信しました。確認してください。",
   });
 };
+
+// メール設定
 const resetPassMails = (email, res, req) => {
   const randomStr = Math.random().toFixed(36).substring(2, 38);
   const token = createHmac("sha256", appKey).update(randomStr).digest("hex");

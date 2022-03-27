@@ -1,5 +1,9 @@
 /* eslint-disable new-cap */
 import mongoose from "mongoose";
+
+/**
+ * Task Schema
+ */
 const Task = mongoose.Schema({
   folderId: "ObjectId",
   title: "string",

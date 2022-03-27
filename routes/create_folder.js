@@ -5,10 +5,12 @@ import Folder from "../schema/folder.js";
 import { validateCreateFolderFormRules } from "../varidate_rule.js";
 import { validationResult } from "express-validator";
 
-/* GET home page. */
+// フォルダ作成ページ
 router.get("/", (req, res, next) => {
   res.render("create_folder_view");
 });
+
+// フォルダ作成リクエスト
 router.post("/", validateCreateFolderFormRules, (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

@@ -1,5 +1,9 @@
 /* eslint-disable new-cap */
 import mongoose from "mongoose";
+
+/**
+ * users schema
+ */
 const Users = mongoose.Schema({
   username: "string",
   password: "string",

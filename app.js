@@ -25,14 +25,15 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// mongodbSession設定
 const MongoDBStore = connectMongoDBSession(session);
 const store = new MongoDBStore({
   uri: "mongodb://127.0.0.1:27017/myDB",
   collection: "mySessions",
 });
-const app = express();
 
-// view engine setup
+// express設定
+const app = express();
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "pug");
 app.use(logger("dev"));
@@ -53,6 +54,8 @@ app.use(
     },
   })
 );
+
+// コントローラ設定
 app.use(passport.initialize());
 app.use(passport.session());
 app.use("/", indexRouter);
@@ -66,6 +69,7 @@ app.use("/folders/:id/create/tasks", createTaskRouter);
 app.use("/folders/:id/tasks/:taskid/edit", editTaskRouter);
 app.use("/verify/:id/:hash", mainRegistration);
 
+// mongodb接続
 mongoose.connect("mongodb://127.0.0.1:27017/myDB", (err) => {
   if (err) {
     console.error(err);

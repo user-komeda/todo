@@ -3,7 +3,7 @@ import { Router } from "express";
 const router = Router({ mergeParams: true });
 import Folder from "../schema/folder.js";
 
-/* GET home page. */
+// タスクページ表示
 router.get("/", (req, res, next) => {
   const id = req.params.id;
   if (!req.session.user) {

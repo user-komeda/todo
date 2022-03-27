@@ -5,13 +5,15 @@ import Task from "../schema/tasks.js";
 import { validateCreateTaskFormRules } from "../varidate_rule.js";
 import { validationResult } from "express-validator";
 
-/* GET home page. */
+// タスク作成ページ
 router.get("/", (req, res, next) => {
   const folderId = req.params.id;
   res.render("create_task_view", {
     folderId: folderId,
   });
 });
+
+// タスク作成リクエスト
 router.post("/", validateCreateTaskFormRules, (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

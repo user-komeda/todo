@@ -7,12 +7,15 @@ import { validationResult } from "express-validator";
 
 import { hashSync } from "bcrypt";
 import Users from "../schema/users.js";
-/* GET home page. */
+
+// パスワード再設定ページ
 router.get("/", (req, res, next) => {
   return res.render("reset_pass", {
     token: req.params.token,
   });
 });
+
+// パスワード再設定リクエスト
 router.post("/", validateResetPassFormRules, (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

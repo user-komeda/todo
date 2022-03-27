@@ -5,11 +5,12 @@ import MailConfig from "../mailConfig.js";
 import { validateForgatPassFormRules } from "../varidate_rule.js";
 import { validationResult } from "express-validator";
 
-/* GET home page. */
+// パスワード再設定ページ
 router.get("/", (req, res, next) => {
   res.render("forgat_pass");
 });
 
+// パスワード再設定リクエスト
 router.post("/", validateForgatPassFormRules, (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

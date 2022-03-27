@@ -7,11 +7,13 @@ import { hashSync } from "bcrypt";
 import { validateSigunupFormRules } from "../varidate_rule.js";
 import { validationResult } from "express-validator";
 import mailConfig from "../mailConfig.js";
-/* GET home page. */
+
+// signupPage表示
 router.get("/", (req, res, next) => {
   res.render("signup", { title: "Express" });
 });
 
+// signupPage リクエスト
 router.post("/", validateSigunupFormRules, (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
