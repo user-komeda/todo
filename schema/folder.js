@@ -1,6 +1,7 @@
-const mongoose = require('mongoose')
+/* eslint-disable new-cap */
+import mongoose from "mongoose";
 const Folder = mongoose.Schema({
-  folderName: 'string',
+  folderName: "string",
   createAt: { type: Date, default: new Date() },
-})
-module.exports = mongoose.model('Folder', Folder)
+});
+export default mongoose.model("Folder", Folder);

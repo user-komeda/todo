@@ -1,9 +1,10 @@
-const mongoose = require('mongoose')
+/* eslint-disable new-cap */
+import mongoose from "mongoose";
 const Users = mongoose.Schema({
-  username: 'string',
-  password: 'string',
-  email: 'string',
+  username: "string",
+  password: "string",
+  email: "string",
   createAt: { type: Date, default: new Date() },
   emailVerifiedAt: { type: Date, default: null },
-})
-module.exports = mongoose.model('Users', Users)
+});
+export default mongoose.model("Users", Users);

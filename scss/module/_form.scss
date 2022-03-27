@@ -1,13 +1,15 @@
 h2 {
-  background-color: #e5e9ec;
   margin: 0;
+  background-color: #e5e9ec;
 }
-.form_div {
+
+.form-div {
   width: 320px;
-  margin: 100px auto 10px;
   padding: 5px 20px;
+  margin: 100px auto 10px;
   background-color: white;
 }
+
 .form {
   display: inline-block;
 }
@@ -17,20 +19,22 @@ h2 {
   margin-bottom: 10px;
   font-size: 20px;
 }
+
 .forgetpass,
 .notsignup {
   a {
-    margin: 0 auto;
     display: block;
     width: 350px;
+    margin: 0 auto;
   }
 }
+
 .button {
-  font-size: 20px;
   margin-left: 260px;
+  font-size: 20px;
 }
 
 p {
-  font-weight: bold;
   margin: 0 0 0 5px;
+  font-weight: bold;
 }

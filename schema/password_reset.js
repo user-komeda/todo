@@ -1,7 +1,8 @@
-const mongoose = require('mongoose')
+/* eslint-disable new-cap */
+import mongoose from "mongoose";
 const PasswordReset = mongoose.Schema({
-  email: 'string',
-  token: 'string',
+  email: "string",
+  token: "string",
   createAt: { type: Date, default: new Date() },
-})
-module.exports = mongoose.model('PasswordReset', PasswordReset)
+});
+export default mongoose.model("PasswordReset", PasswordReset);

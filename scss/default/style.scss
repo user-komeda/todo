@@ -1,10 +1,11 @@
-@import '../base/normalize';
-@import '../module/header';
-@import '../module/form';
-@import '../module/tasks';
+@import "../base/normalize";
+@import "../module/header";
+@import "../module/form";
+@import "../module/tasks";
+
 body {
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
   box-sizing: border-box;
   width: 100%;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #f1f7fc;
 }

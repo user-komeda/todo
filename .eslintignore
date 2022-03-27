@@ -1,1 +1,5 @@
 routes/dist
+dist
+public
+.yarn
+node_modules
